@@ -1,0 +1,15 @@
+{
+  "name": "super-supervillains-inc",
+  "version": "1.0.0",
+  "description": "Super Supervillains Inc.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.13.4",
+    "supervillains": "^1.0.0"
+  },
+  "author": "Dooly Research Ltd."
+}
