@@ -11,5 +11,8 @@
     "express": "^4.13.4",
     "supervillains": "^1.0.0"
   },
-  "author": "Dooly Research Ltd."
+  "author": "Dooly Research Ltd.",
+  "devDependencies": {
+    "webpack": "^1.12.13"
+  }
 }
