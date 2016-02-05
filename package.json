@@ -13,6 +13,7 @@
   },
   "author": "Dooly Research Ltd.",
   "devDependencies": {
+    "react-hot-loader": "^1.3.0",
     "webpack": "^1.12.13"
   }
 }
