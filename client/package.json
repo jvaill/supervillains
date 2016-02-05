@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "babel": {
-    "presets": ["es2015", "react"]
+    "presets": [
+      "es2015",
+      "react"
+    ]
   },
   "keywords": [],
   "author": "Amadeusz Wieczorek",
@@ -17,6 +20,9 @@
     "babel-loader": "^6.2.2",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
+    "chai": "^3.5.0",
+    "jsdom": "^8.0.2",
+    "mocha": "^2.4.5",
     "webpack": "^1.12.13",
     "webpack-dev-server": "^1.14.1"
   }
