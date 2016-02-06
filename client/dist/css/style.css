@@ -5,8 +5,10 @@ html, body {
 
 a, a:active, a:visited {
     color: #a00;
+    text-decoration: none;
 }
 
 a:hover {
     color: #e00;
+    text-decoration: none;
 }
