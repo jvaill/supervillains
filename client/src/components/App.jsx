@@ -1,7 +1,7 @@
 import React from 'react';
-import {List} from 'immutable';
+import {Map} from 'immutable';
 
-const villains = List.of({id: '13', name:'Don Tattaglia'}, {id:'26', name:'Don Barzini'});
+const villains = Map({13: {'name':'Don Tattaglia'}, 26: {'name':'Don Barzini'}});
 
 export default React.createClass({
   render: function() {
