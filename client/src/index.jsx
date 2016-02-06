@@ -7,8 +7,8 @@ import Organization from './components/Organization';
 import Villain from './components/Villain';
 
 const routes = <Route component={App}>
-  <Route path="/" component={Organization} />
-  <Route path="/:id" component={Villain} />
+  <Route name="organization" path="/" component={Organization} />
+  <Route name="villain" path="/:id" component={Villain} />
 </Route>;
 
 ReactDOM.render(
