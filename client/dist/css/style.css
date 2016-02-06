@@ -1,0 +1,12 @@
+html, body {
+    background-color: #222;
+    color: #eee;
+}
+
+a, a:active, a:visited {
+    color: #a00;
+}
+
+a:hover {
+    color: #e00;
+}

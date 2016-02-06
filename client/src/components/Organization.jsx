@@ -8,7 +8,6 @@ export default React.createClass({
   },
   render: function() {
     return <div className="villainGroup">
-    <img src="/img/logo.png" />
       {this.getVillains().map(villain =>
         <div>
           <h1>{villain.id} {villain.name}</h1>
