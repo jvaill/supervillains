@@ -11,7 +11,7 @@ function getVillainInfo(state = {
           return Object.assign({}, state, {
             isFetching: true,
             fetched: false
-          })
+          });
         case RECEIVE_INFO:
           return Object.assign({}, state, {
             isFetching: false,
@@ -21,6 +21,23 @@ function getVillainInfo(state = {
           })
         default:
           return state
+    }
+}
+
+function getBosses(state = Map(), action) {
+    switch (action.type) {
+        // TODO: always overwrite existing villains
+        case RECEIVE_HEAD_INFO:
+            var villains = Map();
+            console.log("Processing: " + JSON.stringify(action.villains));
+            action.villains.forEach(function(villain)
+            {
+                villains = villains.set(villain.id, {'name': villain.name});
+            });
+            console.log("New bosses: " + JSON.stringify(villains));
+            return villains;
+        default:
+            return state;
     }
 }
 
@@ -36,16 +53,9 @@ export default function (state = {}, action) {
             return state;
         case RECEIVE_HEAD_INFO:
             console.log("reducer RECEIVE_HEAD_INFO");
-            var villains = state.villains;
-            action.villains.forEach(function(villain)
-            {
-                console.log(JSON.stringify(villain));
-                state.villains = Object.assign({}, state.villains, {
-                    [villain.id]: {'name': villain.name}
-                })
+            return Object.assign({}, state, {
+                villains: getBosses(state.villains, action)
             });
-            console.log("New state: " + JSON.stringify(state));
-            return state;
         case SET_STATE:
             return Object.assign({}, state, action.state)
         default:

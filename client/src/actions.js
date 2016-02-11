@@ -82,7 +82,7 @@ function shouldFetchVillainInfo(state, villainId) {
     }
 }
 
-// TODO: Hook it up to the villain component
+// TODO: Hook it up to the villain component, such that this is called automatically when we view a villain
 // TODO: Figure out how getState() and Promise work
 export function getInfoIfNeeded(villainId) {
     console.log("getInfoIfNeeded " + villainId);

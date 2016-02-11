@@ -29,6 +29,7 @@ export const Organization = React.createClass({
 });
 
 function mapStateToProps(state) {
+    console.log("mapStateToProps: " + JSON.stringify(state));
     return {
         villains: state.villains
     }
