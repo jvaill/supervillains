@@ -10,6 +10,7 @@ import reducer from './reducer';
 import App from './components/App';
 import {ConnectedOrganization} from './components/Organization';
 import {ConnectedVillain} from './components/Villain';
+import {fetchBosses} from './actions';
 import 'babel-polyfill'
 
 const loggerMiddleware = createLogger();
@@ -21,8 +22,6 @@ const store = createStore(
         loggerMiddleware
     ));
     
-// store.dispatch(getInfoIfNeeded(0))
-    
 // Temporarily initialize:
 store.dispatch({
   type: 'SET_STATE',
@@ -33,6 +32,7 @@ store.dispatch({
     })
   }
 });
+store.dispatch(fetchBosses())
 
 const routes = <Route component={App}>
   <Route name="organization" path="/" component={ConnectedOrganization} />

@@ -7,7 +7,11 @@ import {connect} from 'react-redux';
 export const Organization = React.createClass({
   mixins: [PureRenderMixin],
   getVillains: function() {
-    return this.props.villains.toKeyedSeq() || [];
+    if (this.props.villains)
+    {
+        return (this.props.villains).toKeyedSeq();
+    }
+    return [];
   },
   getUrl: function(id) {
       console.log("Get URL: "+"/"+id);

@@ -1,5 +1,5 @@
 import {Map} from 'immutable';
-import {GET_INFO, RECEIVE_INFO, SET_STATE} from './actions';
+import {GET_INFO, RECEIVE_INFO, GET_HEAD_INFO, RECEIVE_HEAD_INFO, SET_STATE} from './actions';
 
 function getVillainInfo(state = {
   isFetching: false,
@@ -31,6 +31,21 @@ export default function (state = {}, action) {
             return Object.assign({}, state, {
                 [action.villainId]: getVillainInfo(state[action.villainId], action)
             })
+        case GET_HEAD_INFO:
+            console.log("reducer GET_HEAD_INFO");
+            return state;
+        case RECEIVE_HEAD_INFO:
+            console.log("reducer RECEIVE_HEAD_INFO");
+            var villains = state.villains;
+            action.villains.forEach(function(villain)
+            {
+                console.log(JSON.stringify(villain));
+                state.villains = Object.assign({}, state.villains, {
+                    [villain.id]: {'name': villain.name}
+                })
+            });
+            console.log("New state: " + JSON.stringify(state));
+            return state;
         case SET_STATE:
             return Object.assign({}, state, action.state)
         default:
