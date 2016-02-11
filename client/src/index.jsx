@@ -4,12 +4,25 @@ import {Map} from 'immutable';
 import Router, {Route} from 'react-router';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
+import thunkMiddleware from 'redux-thunk';
+import createLogger from 'redux-logger';
 import reducer from './reducer';
 import App from './components/App';
 import {ConnectedOrganization} from './components/Organization';
 import {ConnectedVillain} from './components/Villain';
+import 'babel-core/polyfill'
 
-const store = createStore(reducer);
+const loggerMiddleware = createLogger();
+
+const store = createStore(
+    reducer,
+    applyMiddleware(
+        thunkMiddleware,
+        loggerMiddleware
+    ));
+    
+// store.dispatch(getInfoIfNeeded(0))
+    
 // Temporarily initialize:
 store.dispatch({
   type: 'SET_STATE',

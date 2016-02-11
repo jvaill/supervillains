@@ -1,18 +1,39 @@
 import {Map} from 'immutable';
+import {GET_INFO, RECEIVE_INFO} from './actions';
 
-function setState(state, newState) {
-  return state.merge(newState);
+function getVillainInfo(state = {
+  isFetching: false,
+  fetched: false,
+  wiseGuys: [],
+}, action) {
+    switch (action.type) {
+        case GET_INFO:
+          return Object.assign({}, state, {
+            isFetching: true,
+            fetched: false
+          })
+        case RECEIVE_INFO:
+          return Object.assign({}, state, {
+            isFetching: false,
+            fetched: true,
+            wiseGuys: action.wiseGuys,
+            lastUpdated: action.receivedAt
+          })
+        default:
+          return state
+    }
 }
 
-export default function(state = Map(), action) {
-  switch (action.type) {
-  case 'SET_STATE':
-    console.log("SET_STATE");
-    return setState(state, action.state);
-  case 'DRILLDOWN':
-    console.log("DRILLDOWN");
-    // TODO: Make a request to get villain's information
-    return setState(state, action.state);
-  }
-  return state;
+export default function (state = {}, action) {
+    switch (action.type) {
+        case GET_INFO:
+        case RECEIVE_INFO:
+            return Object.assign({}, state, {
+                [action.villainId]: getVillainInfo(state[action.villainId], action)
+            })
+        case SET_STATE:
+            return Object.assign({}, state, action.state)
+        default:
+            return state
+    }
 }
