@@ -7,7 +7,9 @@ import {connect} from 'react-redux';
 export const Villain = React.createClass({
   mixins: [PureRenderMixin],
   getVillain: function(id) {
-    return this.props.villains.get(id) || [];
+    console.log("getVillain " + id);
+    console.log("Getting " + JSON.stringify((this.props.villains.get(parseInt(id)))));
+    return this.props.villains.get(parseInt(id)) || [];
   },
   getVillainId: function() {
       return this.props.params.id || "";
@@ -23,6 +25,7 @@ export const Villain = React.createClass({
 });
 
 function mapStateToProps(state) {
+    console.log("Villain.mapStateToProps: " + JSON.stringify(state));
     return {
         villains: state.villains
     }
