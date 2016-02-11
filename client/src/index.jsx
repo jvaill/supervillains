@@ -22,16 +22,6 @@ const store = createStore(
         loggerMiddleware
     ));
     
-// Temporarily initialize:
-store.dispatch({
-  type: 'SET_STATE',
-  state: {
-    villains: Map({
-      13: {'name':'Don Tattaglia'},
-      26: {'name':'Don Barzini'}
-    })
-  }
-});
 store.dispatch(fetchBosses())
 
 const routes = <Route component={App}>
