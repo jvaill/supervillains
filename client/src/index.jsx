@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Map} from 'immutable';
 import Router, {Route} from 'react-router';
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
@@ -10,7 +10,7 @@ import reducer from './reducer';
 import App from './components/App';
 import {ConnectedOrganization} from './components/Organization';
 import {ConnectedVillain} from './components/Villain';
-import 'babel-core/polyfill'
+import 'babel-polyfill'
 
 const loggerMiddleware = createLogger();
 

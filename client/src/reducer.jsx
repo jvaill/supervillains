@@ -1,5 +1,5 @@
 import {Map} from 'immutable';
-import {GET_INFO, RECEIVE_INFO} from './actions';
+import {GET_INFO, RECEIVE_INFO, SET_STATE} from './actions';
 
 function getVillainInfo(state = {
   isFetching: false,

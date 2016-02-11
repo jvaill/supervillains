@@ -26,7 +26,7 @@ export const Organization = React.createClass({
 
 function mapStateToProps(state) {
     return {
-        villains: state.get('villains')
+        villains: state.villains
     }
 }
 
