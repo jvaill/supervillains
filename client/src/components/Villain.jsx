@@ -7,7 +7,7 @@ import {getInfoIfNeeded} from '../actions';
 // Pure component: fully driven by props
 export const Villain = React.createClass({
   mixins: [PureRenderMixin],
-  componentDidMount: function() { 
+  componentDidMount: function() {
       return this.props.componentDidMount(this.props.id);
   },
   render: function() {
@@ -23,7 +23,7 @@ export const Villain = React.createClass({
         <p>None. {name} is an underdog.</p>
       }
       {fetched && wiseGuys.length !== 0 &&
-        <p>A few wiseguys: {wiseGuys}.</p>
+        <p>Wiseguys count: {wiseGuys.length}.</p>
       }
       <p>Last updated at {lastUpdated}.</p>
     </div>;
@@ -48,7 +48,7 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
     return {
         componentDidMount: function(id) {
-            dispatch(getInfoIfNeeded(id));            
+            dispatch(getInfoIfNeeded(parseInt(id)));
         }
     }
 }
