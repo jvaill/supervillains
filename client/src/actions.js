@@ -5,7 +5,6 @@ export const SET_STATE = 'SET_STATE'
 
 export const GET_INFO = 'GET_INFO'
 function getInfo(villainId) {
-    console.log(GET_INFO)
     return {
         type: GET_INFO,
         villainId
@@ -14,7 +13,6 @@ function getInfo(villainId) {
 
 export const GET_HEAD_INFO = 'GET_HEAD_INFO'
 function getHeadInfo() {
-    console.log(GET_HEAD_INFO)
     return {
         type: GET_HEAD_INFO
     }
@@ -22,21 +20,17 @@ function getHeadInfo() {
 
 export const RECEIVE_INFO = 'RECEIVE_INFO'
 function receiveInfo(villainId, json) {
-    console.log(RECEIVE_INFO)
-    console.log(json.data)
-    console.log(json.data.children.map(child => child.data))
+    // TODO: analyze villains
     return {
         type: RECEIVE_INFO,
         villainId,
-        villains: json.data.children.map(child => child.data),
+        villains: json,
         receivedAt: Date.now()
     }
 }
 
 export const RECEIVE_HEAD_INFO = 'RECEIVE_HEAD_INFO'
 function receiveHeadInfo(json) {
-    console.log(RECEIVE_HEAD_INFO)
-    console.log(JSON.stringify(json))
     return {
         type: RECEIVE_HEAD_INFO,
         villains: json,
@@ -45,7 +39,6 @@ function receiveHeadInfo(json) {
 }
 
 export function fetchBosses() {
-    console.log("fetchBosses");
     return function (dispatch) {
         // Dispatch an action that we're getting information
         dispatch(getHeadInfo())
@@ -57,7 +50,6 @@ export function fetchBosses() {
 }
 
 export function fetchVillainInfo(villainId) {
-    console.log("fetchVillainInfo " + villainId);
     return function (dispatch) {
         // Dispatch an action that we're getting information
         dispatch(getInfo(villainId))
@@ -69,7 +61,6 @@ export function fetchVillainInfo(villainId) {
 }
 
 function shouldFetchVillainInfo(state, villainId) {
-    console.log("shouldFetchVillainInfo " + villainId);
     var villain = state.villains.get(String(villainId)); // TODO: is there a better way to access this data?
     if (!villain) {
         return true;

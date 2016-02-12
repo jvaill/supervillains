@@ -1,24 +1,32 @@
 import {Map} from 'immutable';
 import {GET_INFO, RECEIVE_INFO, GET_HEAD_INFO, RECEIVE_HEAD_INFO, SET_STATE} from './actions';
 
-function getVillainInfo(state = {
-  isFetching: false,
-  fetched: false,
-  wiseGuys: [],
-}, action) {
+function getVillainInfo(state = Map(), action) {
+    var existingVillain = state.get(parseInt(action.id));
     switch (action.type) {
         case GET_INFO:
-          return Object.assign({}, state, {
+        console.log("GET_INFO " + JSON.stringify(action));
+          var updatedVillain = Object.assign({}, existingVillain, {
             isFetching: true,
             fetched: false
           });
+          var newState = state.set(action.id, updatedVillain);
+          console.log("New state:");
+          console.log(JSON.stringify(newState));
+          return newState;
         case RECEIVE_INFO:
-          return Object.assign({}, state, {
+          console.log("RECEIVE_INFO action " + JSON.stringify(action));
+          console.log("RECEIVE_INFO state " + JSON.stringify(state));
+          var updatedVillain = Object.assign({}, existingVillain, {
             isFetching: false,
             fetched: true,
-            wiseGuys: action.wiseGuys,
+            villains: action.villains,
             lastUpdated: action.receivedAt
           })
+          var newState = state.set(action.id, updatedVillain);
+          console.log("New state:");
+          console.log(JSON.stringify(newState));
+          return newState;
         default:
           return state
     }
@@ -32,7 +40,14 @@ function getBosses(state = Map(), action) {
             console.log("Processing: " + JSON.stringify(action.villains));
             action.villains.forEach(function(villain)
             {
-                villains = villains.set(villain.id, {'name': villain.name});
+                villains = villains.set(
+                    villain.id, {
+                        'name': villain.name,
+                        'id': villain.id,
+                        'isFetching': 'false',
+                        'fetched': 'false',
+                        'lastUpdated': action.receivedAt
+                        });
             });
             console.log("New bosses: " + JSON.stringify(villains));
             return villains;
@@ -45,8 +60,11 @@ export default function (state = {}, action) {
     switch (action.type) {
         case GET_INFO:
         case RECEIVE_INFO:
+            console.log("reducer GET or RECEIVE _INFO");
+            console.log("state: " + JSON.stringify(state));
+            console.log("id: " + action.villainId);
             return Object.assign({}, state, {
-                [action.villainId]: getVillainInfo(state[action.villainId], action)
+                villains: getVillainInfo(state.villains, action)
             })
         case GET_HEAD_INFO:
             console.log("reducer GET_HEAD_INFO");
