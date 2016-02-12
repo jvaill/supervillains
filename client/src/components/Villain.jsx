@@ -31,6 +31,7 @@ export const Villain = React.createClass({
 });
 
 function mapStateToProps(state, ownProps) {
+    console.log("Villain.mapStateToProps: " + JSON.stringify(state));
     var villainId = ownProps.params.id;
     var villain = state.villains.get(parseInt(villainId));
     return {

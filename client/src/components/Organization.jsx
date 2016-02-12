@@ -32,7 +32,6 @@ function mapStateToProps(state) {
     console.log("Organization.mapStateToProps: " + JSON.stringify(state));
     return {
         villains: state.villains,
-        componentWillMount: function() { console.log("Organization will mount");}
     }
 }
 
